@@ -32,8 +32,7 @@ public class UsuarioApi {
 		try {
 			u = new Usuario();
 			u.setNif(id);
-			u.setPassword("123");
-			return userDAO.buscaUsuario(u.getNif(), u.getPassword());
+			return userDAO.buscaUsuario(u.getNif());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

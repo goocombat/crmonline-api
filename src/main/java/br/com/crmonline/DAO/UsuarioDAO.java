@@ -1,3 +1,4 @@
+
 package br.com.crmonline.DAO;
 
 import java.sql.Connection;
@@ -15,12 +16,11 @@ public class UsuarioDAO {
 		con = ConDB.getConnection();
 	}
 
-	public Usuario buscaUsuario(String nif, String senha) throws SQLException {
-		String sql = "SELECT * FROM USUARIO AS U WHERE U.NIF LIKE ? AND U.SENHA LIKE ?;";
+	public Usuario buscaUsuario(String nif) throws SQLException {
+		String sql = "SELECT * FROM USUARIO AS U WHERE U.NIF LIKE ? ";
 
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, nif);
-		ps.setString(2, senha);
 		ResultSet rs = ps.executeQuery();
 		Usuario user = null;
 		if (rs.next()) {
