@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import br.com.crmonline.Entidades.Agenda;
@@ -18,7 +21,7 @@ public class VisitaDAO {
 		con = ConDB.getConnection();
 	}
 
-	public List<Agenda> buscaVisita(String Agenda) throws SQLException {
+	public List<Agenda> buscaVisita() throws SQLException, ParseException {
 		String sql = "SELECT * FROM AGENDA" + "	WHERE ESTADOS = 0 ";
 
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -28,9 +31,10 @@ public class VisitaDAO {
 
 		while (rs.next()) {
 			Agenda a = new Agenda();
-			a.setCodigo(rs.getInt("CODIGO"));
+			a.setCodigo(rs.getInt("ID"));
 			a.setNome(rs.getString("NOME"));
-			a.setData(rs.getDate("DATA"));
+			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+			a.setData(format.parse(rs.getString("DATAV")));
 			a.setHora(rs.getString("HORARIO"));
 			agenda.add(a);
 
