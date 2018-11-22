@@ -1,0 +1,16 @@
+ANDROID
+
+incluir as entidades criadas na api
+
+criar o método no AgendaService
+	realizarVisita(VisitaRealizada)
+
+no adapter
+	colocar um botão realizar
+	clicado em realizar, abrir uma nova activity realizarActivity
+
+na nova realizarActivity
+	campo de classificação
+	botão de enviar
+
+ao clicar em enviar, chama o retrofit para envio do form

@@ -1,0 +1,16 @@
+API
+
+criar entidade visitaRealizada (android, api)
+	id, texto, classificação (1 a 5)
+criar entidade resposta genérica
+	boolean resposta, string respostatexto
+
+no VisitaDao
+	criar um método realizarVisita(visitaRealizada)
+	UPDATE na tabela agenda colocando as infos da visitaRealizada.
+	retorna uma respostaGenérica
+
+criar um novo recurso /realizar
+	recurso chama o método return realizarVisita
+
+
