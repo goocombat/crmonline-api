@@ -19,7 +19,7 @@ import br.com.crmonline.Entidades.Agenda;
 public class VisitaApi {
 
 	VisitaDAO visitaDAO;
-
+	
 	public VisitaApi() {
 		visitaDAO = new VisitaDAO();
 	}
@@ -38,5 +38,9 @@ public class VisitaApi {
 		}
 		return null;
 	}
-
+	
+	public boolean realizar() {
+		
+		return false;
+		}
 }
