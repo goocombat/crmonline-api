@@ -1,6 +1,6 @@
 package br.com.crmonline.Entidades;
 
-public class respostaGenerica {
+public class RespostaGenerica {
 
 	public boolean resposta;
 	public String respostaTexto;

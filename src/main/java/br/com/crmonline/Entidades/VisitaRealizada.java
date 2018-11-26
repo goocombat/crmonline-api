@@ -1,6 +1,6 @@
 package br.com.crmonline.Entidades;
 
-public class visitaRealizada {
+public class VisitaRealizada {
 	
 	public int id;
 	public String texto;
