@@ -14,7 +14,7 @@ import br.com.crmonline.Entidades.Agenda;
 import br.com.crmonline.Entidades.Usuario;
 
 public class VisitaDAO {
-
+ 
 	private Connection con;
 
 	public VisitaDAO() {
