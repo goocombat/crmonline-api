@@ -1,5 +1,7 @@
 package br.com.crmonline.Recursos;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
@@ -19,8 +21,10 @@ import br.com.crmonline.Entidades.Agenda;
 public class VisitaApi {
 
 	VisitaDAO visitaDAO;
+	private Connection con;
 	
 	public VisitaApi() {
+		
 		visitaDAO = new VisitaDAO();
 	}
 
@@ -39,8 +43,15 @@ public class VisitaApi {
 		return null;
 	}
 	
-	public boolean realizar() {
+	public boolean realizaVisita(Agenda a) throws SQLException {
+		String SQL = "UPDATE AGENDA SET OBSERVACOES = ?, CLASSFICACOES = ? WHERE ID = ?"; 
+		PreparedStatement ps;
+		ps = con.prepareStatement(SQL);
 		
-		return false;
-		}
+		ps.setString(1, a.getObservacao());
+		ps.setString(2, a.getClassificacao());
+		ps.setInt(3, a.getCodigo());
+		
+		return ps.executeUpdate() > 0;	
+	}
 }
