@@ -8,12 +8,15 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import br.com.crmonline.DAO.VisitaDAO;
 import br.com.crmonline.Entidades.Agenda;
+import br.com.crmonline.Entidades.RespostaGenerica;
+import br.com.crmonline.Entidades.VisitaRealizada;
 
 @Path("/ws/visita")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -22,9 +25,9 @@ public class VisitaApi {
 
 	VisitaDAO visitaDAO;
 	private Connection con;
-	
+
 	public VisitaApi() {
-		
+
 		visitaDAO = new VisitaDAO();
 	}
 
@@ -42,16 +45,21 @@ public class VisitaApi {
 		}
 		return null;
 	}
-	
-	public boolean realizaVisita(Agenda a) throws SQLException {
-		String SQL = "UPDATE AGENDA SET OBSERVACOES = ?, CLASSFICACOES = ? WHERE ID = ?"; 
-		PreparedStatement ps;
-		ps = con.prepareStatement(SQL);
-		
-		ps.setString(1, a.getObservacao());
-		ps.setString(2, a.getClassificacao());
-		ps.setInt(3, a.getCodigo());
-		
-		return ps.executeUpdate() > 0;	
+
+	@POST
+	@Path("/realizar")
+	public RespostaGenerica realizaVisita(VisitaRealizada v) throws SQLException {
+		RespostaGenerica r = new RespostaGenerica();
+		if (visitaDAO.realizarVisita(v)) {
+			r.setResposta(true);
+			r.setRespostaTexto("Visita realizada com sucesso");
+			return r;
+		} else {
+			r.setResposta(false);
+			r.setRespostaTexto("Visita não realizada");
+			return r;
+
+		}
 	}
+
 }

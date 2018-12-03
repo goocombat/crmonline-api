@@ -11,7 +11,9 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.crmonline.Entidades.Agenda;
+import br.com.crmonline.Entidades.RespostaGenerica;
 import br.com.crmonline.Entidades.Usuario;
+import br.com.crmonline.Entidades.VisitaRealizada;
 
 public class VisitaDAO {
  
@@ -43,21 +45,17 @@ public class VisitaDAO {
 
 	}
 	
-	public boolean realizarVisita (Agenda a ) throws SQLException {
+	public boolean realizarVisita (VisitaRealizada v) throws SQLException {
 		
 		String SQL = "UPDATE AGENDA SET OBSERVACOES = ?, CLASSFICACOES = ? WHERE ID = ?"; 
 		PreparedStatement ps;
 		ps = con.prepareStatement(SQL);
 		
-		ps.setString(1, a.getObservacao());
-		ps.setString(2, a.getClassificacao());
-		ps.setInt(3, a.getCodigo());
+		ps.setString(1, v.getTexto());
+		ps.setInt(2, v.getClassificacao());
+		ps.setInt(3, v.getId());
 		
 		return ps.executeUpdate() > 0;
 	}
-	
-	
-	
-	
-	
+		
 }
