@@ -47,7 +47,7 @@ public class VisitaDAO {
 	
 	public boolean realizarVisita (VisitaRealizada v) throws SQLException {
 		
-		String SQL = "UPDATE AGENDA SET OBSERVACOES = ?, CLASSFICACOES = ? WHERE ID = ?"; 
+		String SQL = "UPDATE AGENDA SET ESTADO = 1, OBSERVACOES = ?, CLASSFICACOES = ? WHERE ID = ?"; 
 		PreparedStatement ps;
 		ps = con.prepareStatement(SQL);
 		
